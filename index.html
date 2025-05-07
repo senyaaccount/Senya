@@ -22,6 +22,7 @@
       --icon-glow: 0 0 16px #fa08b7, 0 0 7px #00ffe7;
       --border: 1.5px solid rgba(255,255,255,0.11);
       --section-gap: 3.2rem;
+      --navbar-height: 54px;
     }
     html {
       font-size: clamp(15px, 2vw, 18px);
@@ -66,6 +67,7 @@
       box-shadow: 0 2px 16px #0001;
       backdrop-filter: blur(12px);
       transition: border-radius 0.2s, position 0.2s;
+      min-height: var(--navbar-height);
     }
     .navbar a {
       color: var(--accent);
@@ -96,6 +98,83 @@
     .navbar a:hover i, .navbar a.active i,
     .navbar a:hover .ri, .navbar a.active .ri {
       filter: drop-shadow(0 0 7px #fff) drop-shadow(0 0 18px #00ffe7);
+    }
+    .navbar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 2.1rem;
+      align-items: center;
+      justify-content: center;
+      padding: 0.2em 0.8em 0.2em 0.3em;
+      cursor: pointer;
+      z-index: 1101;
+      transition: color 0.17s;
+    }
+    .navbar-toggle:focus {
+      outline: 2px solid var(--accent);
+    }
+    @media (max-width: 700px) {
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        border-radius: 0 0 18px 18px;
+        box-sizing: border-box;
+        z-index: 1000;
+        padding: 0;
+        justify-content: flex-start;
+        min-height: var(--navbar-height);
+      }
+      html, body {
+        padding-top: var(--navbar-height);
+      }
+      .navbar-toggle {
+        display: flex;
+        margin-left: 0.5rem;
+        min-width: 44px;
+        min-height: 44px;
+      }
+      .navbar-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100vw;
+        background: rgba(24, 0, 36, 0.97);
+        border-bottom: var(--border);
+        position: absolute;
+        top: var(--navbar-height);
+        left: 0;
+        box-shadow: 0 2px 24px #0002;
+        z-index: 1100;
+      }
+      .navbar-links.open {
+        display: flex;
+      }
+      .navbar a {
+        width: 100%;
+        justify-content: flex-start;
+        font-size: 1.13rem;
+        padding: 1.1rem 1.2rem 1.1rem 2.3rem;
+        border-radius: 0;
+        border-bottom: 1px solid #fff1;
+        gap: 0.8em;
+      }
+      .navbar a:last-child {
+        border-bottom: none;
+      }
+      .navbar a.active, .navbar a:hover {
+        background: linear-gradient(90deg, var(--primary) 55%, var(--accent) 100%);
+        color: #fff;
+      }
+    }
+    @media (max-width: 400px) {
+      .navbar a {
+        font-size: 1rem;
+        padding: 1rem 1rem 1rem 1.5rem;
+      }
     }
     header {
       text-align: center;
@@ -468,20 +547,6 @@
       header h1 { font-size: 2.1rem; }
       .socials a { font-size: 1.7rem; width: 2.1em; height: 2.1em; }
     }
-    @media (max-width: 700px) {
-      .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        border-radius: 0 0 18px 18px;
-        box-sizing: border-box;
-        z-index: 1000;
-      }
-      html, body {
-        padding-top: 65px; /* Adjust to match navbar height */
-      }
-    }
     @media (max-width: 600px) {
       .works-gallery {
         grid-template-columns: 1fr;
@@ -509,10 +574,15 @@
 <body>
   <canvas id="nightclub-bg"></canvas>
   <nav class="navbar" aria-label="Main navigation">
-    <a href="#about" id="nav-about"><i class="ri-user-3-fill"></i>About</a>
-    <a href="#works" id="nav-works"><i class="ri-gallery-fill"></i>Works</a>
-    <a href="#prices" id="nav-prices"><i class="ri-money-dollar-circle-fill"></i>Prices</a>
-    <a href="#contact" id="nav-contact"><i class="ri-mail-send-fill"></i>Contact</a>
+    <button class="navbar-toggle" aria-label="Open navigation" aria-expanded="false" id="navbarToggle">
+      <i class="ri-menu-3-line"></i>
+    </button>
+    <div class="navbar-links" id="navbarLinks">
+      <a href="#about" id="nav-about"><i class="ri-user-3-fill"></i>About</a>
+      <a href="#works" id="nav-works"><i class="ri-gallery-fill"></i>Works</a>
+      <a href="#prices" id="nav-prices"><i class="ri-money-dollar-circle-fill"></i>Prices</a>
+      <a href="#contact" id="nav-contact"><i class="ri-mail-send-fill"></i>Contact</a>
+    </div>
   </nav>
   <header>
     <img src="https://i.imgur.com/NByaI5o.jpg" alt="Senya Profile Picture" loading="lazy">
@@ -755,6 +825,25 @@
     <p>&copy; 2025 Senya. All rights reserved.</p>
   </footer>
   <script>
+    // Hamburger nav for mobile
+    const navbarToggle = document.getElementById('navbarToggle');
+    const navbarLinks = document.getElementById('navbarLinks');
+    navbarToggle.addEventListener('click', function() {
+      const expanded = navbarLinks.classList.toggle('open');
+      this.setAttribute('aria-expanded', expanded ? "true" : "false");
+      this.querySelector('i').className = expanded ? "ri-close-line" : "ri-menu-3-line";
+      document.body.style.overflow = expanded ? 'hidden' : '';
+    });
+    document.querySelectorAll('.navbar-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 700) {
+          navbarLinks.classList.remove('open');
+          navbarToggle.setAttribute('aria-expanded', "false");
+          navbarToggle.querySelector('i').className = "ri-menu-3-line";
+          document.body.style.overflow = '';
+        }
+      });
+    });
     // Work Filters (Gallery)
     document.querySelectorAll('.work-filters button').forEach(btn => {
       btn.addEventListener('click', function() {
@@ -770,7 +859,6 @@
         });
       });
     });
-
     // Lightbox for Gallery Images with Keyboard Navigation
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImage');
@@ -816,9 +904,8 @@
       if (e.key === "ArrowLeft") showPrevImage();
       if (e.key === "ArrowRight") showNextImage();
     });
-
     // Navbar active state on scroll/click
-    const navLinks = document.querySelectorAll('.navbar a');
+    const navLinks = document.querySelectorAll('.navbar-links a');
     const sections = Array.from(document.querySelectorAll('main section'));
     window.addEventListener('scroll', () => {
       let fromTop = window.scrollY + 120;
