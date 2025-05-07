@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Senya | Muscular Artist</title>
   <meta name="description" content="Portfolio of Senya, muscular NSFW artist specializing in custom commissions." />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -23,12 +23,15 @@
       --border: 1.5px solid rgba(255,255,255,0.11);
       --section-gap: 3.2rem;
     }
+    html {
+      font-size: clamp(15px, 2vw, 18px);
+      scroll-behavior: smooth;
+    }
     html, body {
       margin: 0; padding: 0;
       font-family: var(--font-main);
       color: #fff;
       min-height: 100vh;
-      scroll-behavior: smooth;
       background: transparent !important;
     }
     body::before {
@@ -74,6 +77,9 @@
       transition: background 0.13s, color 0.13s, box-shadow 0.19s;
       display: flex; align-items: center; gap: 0.45em;
       position: relative;
+      min-width: 44px;
+      min-height: 44px;
+      touch-action: manipulation;
     }
     .navbar a i, .navbar a .ri {
       font-size: 1.24em;
@@ -114,7 +120,7 @@
     }
     header h1 {
       font-family: 'Orbitron', 'Montserrat', sans-serif;
-      font-size: 3.1rem;
+      font-size: clamp(2rem, 7vw, 3.1rem);
       margin-bottom: 0.38rem;
       letter-spacing: 0.07em;
       text-shadow: 0 2px 14px #0006, 0 0 4px var(--primary);
@@ -149,6 +155,9 @@
       box-shadow: 0 2px 16px #0001;
       border: 2px solid transparent;
       position: relative;
+      min-width: 44px;
+      min-height: 44px;
+      touch-action: manipulation;
     }
     .socials a:hover {
       color: #fff;
@@ -182,7 +191,7 @@
       overflow: hidden;
     }
     section h2 {
-      font-size: 2.3rem;
+      font-size: clamp(1.2rem, 5vw, 2.3rem);
       margin-bottom: 1.2rem;
       color: var(--primary);
       letter-spacing: 0.07em;
@@ -237,6 +246,9 @@
       position: relative;
       overflow: hidden;
       text-shadow: 0 1px 7px #0002;
+      min-width: 44px;
+      min-height: 44px;
+      touch-action: manipulation;
     }
     .work-filters button:hover, .work-filters button.active {
       background: linear-gradient(90deg, var(--primary) 55%, var(--accent) 100%);
@@ -245,24 +257,28 @@
       box-shadow: 0 0 16px var(--accent), 0 0 7px #fff;
       z-index: 2;
     }
+    /* Gallery: CSS Grid for responsive columns */
     .works-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.1rem;
       justify-content: center;
+      align-items: stretch;
     }
     .works-gallery figure {
       margin: 0;
       background: #1a0030cc;
       padding: 0.5rem 0.5rem 1rem 0.5rem;
       border-radius: 16px;
-      max-width: 210px;
       transition: box-shadow 0.16s, transform 0.14s;
       box-shadow: 0 2px 10px #0005;
       text-align: center;
       border: 1.5px solid #fff2;
       position: relative;
       overflow: hidden;
+      max-width: 260px;
+      width: 100%;
+      justify-self: center;
     }
     .works-gallery figure:hover {
       box-shadow: 0 0 22px var(--primary)cc;
@@ -270,14 +286,15 @@
       z-index: 2;
     }
     .works-gallery img {
-      width: 200px;
-      height: 200px;
+      width: 100%;
+      max-width: 240px;
+      height: auto;
       border: 2px solid var(--primary);
       border-radius: 10px;
       object-fit: cover;
       cursor: pointer;
       display: block;
-      margin-bottom: 0.5rem;
+      margin: 0 auto 0.5rem auto;
       background: #200124;
       transition: transform 0.16s, box-shadow 0.18s;
       box-shadow: 0 4px 18px #0006;
@@ -360,6 +377,8 @@
       transition: border 0.2s, box-shadow 0.2s;
       box-shadow: 0 1px 7px #ff00c822;
       outline: none;
+      width: 100%;
+      box-sizing: border-box;
     }
     input:focus, textarea:focus {
       border: 2px solid var(--primary);
@@ -430,24 +449,6 @@
       background-color: var(--accent);
       color: #111;
     }
-    #musicStartBtn {
-      position:fixed;
-      top:20px;
-      right:20px;
-      z-index:2000;
-      background:var(--primary);
-      color:#fff;
-      border:none;
-      border-radius:50px;
-      padding:1rem 2rem;
-      font-size:1.2rem;
-      cursor:pointer;
-      box-shadow: 0 2px 10px #0004;
-      transition: background 0.18s;
-      font-family: var(--font-main);
-      font-weight: bold;
-    }
-    #musicStartBtn:hover { background: var(--accent); color:#19102b; }
     footer {
       text-align: center;
       color: #bbb;
@@ -458,31 +459,43 @@
       border-top: 1px solid #fff2;
       padding-top: 1.5rem;
     }
+    /* Responsive for tablets and below */
     @media (max-width: 900px) {
       .about-me-container { flex-direction: column; gap: 1rem; }
       section, .works-gallery figure { max-width: 99vw; }
       .works-gallery { gap: 1rem; }
-      .works-gallery img { width: 95vw; max-width: 300px; height: auto; }
-      #musicStartBtn { top: 10px; right: 10px; padding: 0.7rem 1.1rem; font-size: 1rem; }
+      .works-gallery img { max-width: 300px; }
       section h2 { font-size: 1.6rem; }
       header h1 { font-size: 2.1rem; }
       .socials a { font-size: 1.7rem; width: 2.1em; height: 2.1em; }
+    }
+    /* Responsive for mobile screens */
+    @media (max-width: 600px) {
+      .works-gallery {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+      .works-gallery img {
+        max-width: 98vw;
+      }
+      .about-me-signature img {
+        max-width: 90vw;
+      }
+      .pricing-table th, .pricing-table td {
+        padding: 0.55rem;
+        font-size: 0.98rem;
+      }
+      form {
+        padding: 1rem;
+      }
+      input, textarea {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <canvas id="nightclub-bg"></canvas>
-  <iframe 
-    id="scplayer" 
-    width="0" 
-    height="0" 
-    scrolling="no" 
-    frameborder="no" 
-    allow="autoplay" 
-    style="display:none"
-    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2090153103&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
-  </iframe>
-  <button id="musicStartBtn">Play Music 🎵</button>
   <nav class="navbar" aria-label="Main navigation">
     <a href="#about" id="nav-about"><i class="ri-user-3-fill"></i>About</a>
     <a href="#works" id="nav-works"><i class="ri-gallery-fill"></i>Works</a>
@@ -507,7 +520,6 @@
         <i class="fa-brands fa-itch-io"></i>
       </a>
       <a href="https://bsky.app/profile/senyaaccount.bsky.social" target="_blank" aria-label="Bluesky" title="Bluesky" style="background:#112330; color:#139dfe;">
-        <!-- Bluesky SVG icon, updated to match official logo and aspect ratio -->
         <svg class="bsky-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="1.3em" height="1.3em" aria-hidden="true" focusable="false">
           <g>
             <ellipse cx="36" cy="36" rx="36" ry="36" fill="#139DFC"/>
@@ -713,11 +725,11 @@
     <!-- Contact section -->
     <section id="contact">
       <h2><i class="ri-mail-send-fill"></i> Contact</h2>
-      <form action="https://formspree.io/f/mvgaapel" method="POST" aria-label="Contact form">
+      <form action="https://formspree.io/f/mvgaapel" method="POST" aria-label="Contact form" autocomplete="on">
         <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required placeholder="e.g. your@email.com">
+        <input type="email" id="email" name="email" required placeholder="e.g. your@email.com" autocomplete="email">
         <label for="message">Commission Request:</label>
-        <textarea id="message" name="message" rows="4" required placeholder="Describe your commission request..."></textarea>
+        <textarea id="message" name="message" rows="4" required placeholder="Describe your commission request..." autocomplete="on"></textarea>
         <input type="submit" value="Send Request">
       </form>
     </section>
@@ -753,7 +765,6 @@
     const lightboxCaption = document.getElementById('lightboxCaption');
     const galleryImgs = Array.from(document.querySelectorAll('.works-gallery img'));
     let currentImgIndex = -1;
-
     function openLightbox(index) {
       const img = galleryImgs[index];
       lightboxImg.src = img.src;
@@ -813,20 +824,6 @@
         this.classList.add('active');
       });
     });
-
-    // Music Play Button
-    const musicBtn = document.getElementById('musicStartBtn');
-    const scPlayer = document.getElementById('scplayer');
-    musicBtn.addEventListener('click', () => {
-      scPlayer.style.display = 'block';
-      scPlayer.contentWindow.postMessage('{"method":"play"}', '*');
-      musicBtn.style.display = 'none';
-    });
-    window.addEventListener('keydown', hideMusicBtnOnInteraction, { once: true });
-    window.addEventListener('mousedown', hideMusicBtnOnInteraction, { once: true });
-    function hideMusicBtnOnInteraction() {
-      if (musicBtn.style.display !== 'none') musicBtn.style.display = 'block';
-    }
   </script>
 </body>
 </html>
