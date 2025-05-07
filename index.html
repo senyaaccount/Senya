@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senya | Muscular Artist</title>
+  <meta name="description" content="Portfolio of Senya, muscular NSFW artist specializing in custom commissions." />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    :root {
+      --primary: #fa08b7;
+      --secondary: #4f3fff;
+      --accent: #00ffe7;
+      --background: transparent;
+      --glass: rgba(30, 0, 37, 0.35);
+      --glass-blur: blur(22px);
+      --card-radius: 28px;
+      --shadow: 0 8px 40px 0 rgba(31,38,135,0.19);
+      --font-main: 'Montserrat', 'Orbitron', sans-serif;
+      --icon-glow: 0 0 16px #fa08b7, 0 0 7px #00ffe7;
+      --border: 1.5px solid rgba(255,255,255,0.11);
+      --section-gap: 3.2rem;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: var(--font-main);
+      color: #fff;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+      background: transparent !important;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100vw; height: 100vh;
+      z-index: -10;
+      background:
+        linear-gradient(135deg, #12002e88 0%, #2f005a77 100%),
+        url('https://i.imgur.com/AkMEN46.jpg') center center/cover no-repeat;
+      filter: brightness(0.7) blur(1.2px) saturate(1.1);
+      pointer-events: none;
+    }
+    #nightclub-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: -5; opacity: 0.5;
+    }
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(24, 0, 36, 0.81);
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      z-index: 100;
+      padding: 0.7rem 0 0.45rem 0;
+      border-bottom: var(--border);
+      box-shadow: 0 2px 16px #0001;
+      backdrop-filter: blur(12px);
+    }
+    .navbar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.12rem;
+      letter-spacing: 1px;
+      font-weight: bold;
+      padding: 0.42rem 1.1rem;
+      border-radius: 21px;
+      transition: background 0.13s, color 0.13s, box-shadow 0.19s;
+      display: flex; align-items: center; gap: 0.45em;
+      position: relative;
+    }
+    .navbar a i, .navbar a .ri {
+      font-size: 1.24em;
+      filter: var(--icon-glow);
+      transition: filter 0.2s;
+    }
+    .navbar a:hover, .navbar a.active {
+      background: linear-gradient(90deg, var(--primary) 65%, var(--accent) 100%);
+      color: #fff;
+      box-shadow: 0 2px 22px #fa08b799, 0 0 7px #00ffe7aa;
+    }
+    .navbar a.active { border: 1.5px solid var(--accent); }
+    .navbar a:hover i, .navbar a.active i,
+    .navbar a:hover .ri, .navbar a.active .ri {
+      filter: drop-shadow(0 0 7px #fff) drop-shadow(0 0 18px #00ffe7);
+    }
+    header {
+      text-align: center;
+      padding: 3.2rem 1rem 1.8rem 1rem;
+      background: linear-gradient(120deg, #3f1fffcc 0%, #fa08b799 90%);
+      color: white;
+      box-shadow: 0 0 40px var(--primary);
+      opacity: 0.97;
+      border-radius: 0 0 48px 48px;
+      margin-bottom: var(--section-gap);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    header img {
+      width: 145px; height: 145px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid var(--accent);
+      margin-bottom: 1.1rem;
+      box-shadow: 0 0 0 10px #fa08b733;
+      background: #19102b;
+    }
+    header h1 {
+      font-family: 'Orbitron', 'Montserrat', sans-serif;
+      font-size: 3.1rem;
+      margin-bottom: 0.38rem;
+      letter-spacing: 0.07em;
+      text-shadow: 0 2px 14px #0006, 0 0 4px var(--primary);
+    }
+    header p {
+      font-size: 1.10rem;
+      color: #fffbe9;
+      letter-spacing: 0.05em;
+      margin-top: 0.2rem;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 2px 8px #0003;
+      font-weight: 600;
+    }
+    .socials {
+      text-align: center;
+      margin-top: 1.2rem;
+    }
+    .socials a {
+      color: var(--accent);
+      font-size: 2.15rem;
+      margin: 0 0.6rem;
+      transition: color 0.22s, filter 0.21s, background 0.19s;
+      text-decoration: none;
+      filter: var(--icon-glow);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 2.6em;
+      height: 2.6em;
+      background: rgba(25,0,40,0.18);
+      box-shadow: 0 2px 16px #0001;
+      border: 2px solid transparent;
+      position: relative;
+    }
+    .socials a:hover {
+      color: #fff;
+      filter: drop-shadow(0 0 18px var(--accent)) drop-shadow(0 0 9px #fff);
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--primary)88;
+      border-color: var(--primary);
+    }
+    .socials a[aria-label="Twitter"]    { color: #1da1f2; background: #191b2b; }
+    .socials a[aria-label="DeviantArt"]{ color: #05cc47; background: #18291e; }
+    .socials a[aria-label="Pixiv"]     { color: #0096fa; background: #1a2236; }
+    .socials a[aria-label="itch.io"]   { color: #fa5c5c; background: #2d1818; }
+    .socials a[aria-label="Bluesky"]   { color: #139dfe; background: #112330; }
+    .socials a[aria-label="Bluesky"]:hover { background: #139dfe; color: #fff; }
+    .socials .fa-x-twitter { font-size: 1.22em; }
+    .socials .fa-deviantart { font-size: 1.28em; }
+    .socials .fa-pixiv { font-size: 1.22em; }
+    .socials .fa-itch-io { font-size: 1.22em; }
+    .socials .fa-globe { font-size: 1.22em; }
+    .socials .bsky-icon { font-size: 1.22em; width: 1.22em; height: 1.22em; display: block; }
+    main { position: relative; z-index: 1; }
+    section {
+      padding: 2.7rem 1.6rem 2.2rem 1.6rem;
+      max-width: 900px;
+      margin: 0 auto var(--section-gap) auto;
+      background: var(--glass);
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: var(--glass-blur);
+      border: var(--border);
+      overflow: hidden;
+    }
+    section h2 {
+      font-size: 2.3rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary);
+      letter-spacing: 0.07em;
+      font-family: 'Orbitron', 'Montserrat', sans-serif;
+      border-bottom: 2.5px solid var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      padding-bottom: 0.28rem;
+      text-shadow: 0 2px 7px #0b001544;
+    }
+    .about-me-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .about-me-text { flex: 2; font-size: 1.15rem; }
+    .about-me-signature {
+      flex: 1;
+      text-align: center;
+      min-width: 160px;
+    }
+    .about-me-signature img {
+      max-width: 170px;
+      border-radius: 16px;
+      opacity: 0.95;
+      box-shadow: 0 0 20px var(--primary)44;
+      border: 3px solid var(--accent);
+      margin-top: 0.5rem;
+    }
+    .work-filters {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+    .work-filters button {
+      background: linear-gradient(90deg, #2e003a 0%, #3e1fb7 100%);
+      color: var(--accent);
+      border: 2px solid var(--primary);
+      border-radius: 25px;
+      font-size: 1.05rem;
+      margin: 0 0.15rem 1rem 0.15rem;
+      padding: 0.56rem 1.19rem;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      transition: background 0.17s, color 0.13s, border 0.13s, box-shadow 0.18s;
+      filter: drop-shadow(0 0 7px var(--primary)33);
+      outline: none;
+      box-shadow: 0 2px 10px #4f3fff13;
+      position: relative;
+      overflow: hidden;
+      text-shadow: 0 1px 7px #0002;
+    }
+    .work-filters button:hover, .work-filters button.active {
+      background: linear-gradient(90deg, var(--primary) 55%, var(--accent) 100%);
+      color: #fff;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 16px var(--accent), 0 0 7px #fff;
+      z-index: 2;
+    }
+    .works-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.3rem;
+      justify-content: center;
+    }
+    .works-gallery figure {
+      margin: 0;
+      background: #1a0030cc;
+      padding: 0.5rem 0.5rem 1rem 0.5rem;
+      border-radius: 16px;
+      max-width: 210px;
+      transition: box-shadow 0.16s, transform 0.14s;
+      box-shadow: 0 2px 10px #0005;
+      text-align: center;
+      border: 1.5px solid #fff2;
+      position: relative;
+      overflow: hidden;
+    }
+    .works-gallery figure:hover {
+      box-shadow: 0 0 22px var(--primary)cc;
+      transform: translateY(-7px) scale(1.04);
+      z-index: 2;
+    }
+    .works-gallery img {
+      width: 200px;
+      height: 200px;
+      border: 2px solid var(--primary);
+      border-radius: 10px;
+      object-fit: cover;
+      cursor: pointer;
+      display: block;
+      margin-bottom: 0.5rem;
+      background: #200124;
+      transition: transform 0.16s, box-shadow 0.18s;
+      box-shadow: 0 4px 18px #0006;
+    }
+    .works-gallery img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 30px var(--primary)99;
+    }
+    .works-gallery figcaption {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-top: 0.3rem;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 6px #0003;
+    }
+    .pricing-table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 2rem;
+      border: 1.5px solid var(--primary);
+      background: rgba(25,0,40,0.84);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #ff00c844;
+    }
+    .pricing-table th, .pricing-table td {
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #ff00c855;
+    }
+    .pricing-table th {
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-size: 1.1rem;
+    }
+    .pricing-table tr:nth-child(even) {
+      background-color: #23004b;
+    }
+    .pricing-table tr:hover {
+      background-color: var(--accent);
+      color: #111;
+    }
+    .highlight {
+      background: #32002d;
+      color: #fff;
+    }
+    .badge {
+      background: var(--primary);
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      margin-left: 8px;
+      letter-spacing: 0.05em;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      background-color: rgba(255, 255, 255, 0.07);
+      padding: 2rem;
+      border-radius: 18px;
+      border: 1.5px solid var(--primary);
+      box-shadow: 0 2px 12px #ff00c833;
+      margin-top: 1.3rem;
+      backdrop-filter: blur(14px);
+    }
+    input, textarea {
+      background-color: #2b0038bb;
+      border: 2px solid var(--accent);
+      border-radius: 7px;
+      color: #fff;
+      padding: 0.9rem;
+      font-size: 1.04rem;
+      font-family: var(--font-main);
+      margin-bottom: 0.5rem;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 7px #ff00c822;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 12px var(--primary);
+    }
+    input[type="submit"] {
+      background-color: var(--primary);
+      cursor: pointer;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+      font-size: 1.08rem;
+      transition: background-color 0.25s, box-shadow 0.2s;
+      border: none;
+      margin-top: 0.3rem;
+      border-radius: 25px;
+      box-shadow: 0 2px 14px #ff00c833;
+    }
+    input[type="submit"]:hover {
+      background-color: var(--accent);
+      color: #19102b;
+      box-shadow: 0 0 20px var(--accent);
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.97);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 2rem;
+      overflow: auto;
+    }
+    .lightbox img {
+      width: auto;
+      height: auto;
+      max-width: 90vw;
+      max-height: 90vh;
+      border: 3px solid var(--primary);
+      border-radius: 13px;
+      box-shadow: 0 0 34px var(--primary);
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.8rem;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      z-index: 1001;
+      box-shadow: 0 2px 9px #000b;
+    }
+    .close-btn:hover {
+      background-color: var(--accent);
+      color: #111;
+    }
+    #musicStartBtn {
+      position:fixed;
+      top:20px;
+      right:20px;
+      z-index:2000;
+      background:var(--primary);
+      color:#fff;
+      border:none;
+      border-radius:50px;
+      padding:1rem 2rem;
+      font-size:1.2rem;
+      cursor:pointer;
+      box-shadow: 0 2px 10px #0004;
+      transition: background 0.18s;
+      font-family: var(--font-main);
+      font-weight: bold;
+    }
+    #musicStartBtn:hover { background: var(--accent); color:#19102b; }
+    footer {
+      text-align: center;
+      color: #bbb;
+      font-size: 1rem;
+      margin: 3rem 0 2rem 0;
+      letter-spacing: 1px;
+      opacity: 0.78;
+      border-top: 1px solid #fff2;
+      padding-top: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .about-me-container { flex-direction: column; gap: 1rem; }
+      section, .works-gallery figure { max-width: 99vw; }
+      .works-gallery { gap: 1rem; }
+      .works-gallery img { width: 95vw; max-width: 300px; height: auto; }
+      #musicStartBtn { top: 10px; right: 10px; padding: 0.7rem 1.1rem; font-size: 1rem; }
+      section h2 { font-size: 1.6rem; }
+      header h1 { font-size: 2.1rem; }
+      .socials a { font-size: 1.7rem; width: 2.1em; height: 2.1em; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="nightclub-bg"></canvas>
+  <iframe 
+    id="scplayer" 
+    width="0" 
+    height="0" 
+    scrolling="no" 
+    frameborder="no" 
+    allow="autoplay" 
+    style="display:none"
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2090153103&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
+  </iframe>
+  <button id="musicStartBtn">Play Music 🎵</button>
+  <nav class="navbar" aria-label="Main navigation">
+    <a href="#about" id="nav-about"><i class="ri-user-3-fill"></i>About</a>
+    <a href="#works" id="nav-works"><i class="ri-gallery-fill"></i>Works</a>
+    <a href="#prices" id="nav-prices"><i class="ri-money-dollar-circle-fill"></i>Prices</a>
+    <a href="#contact" id="nav-contact"><i class="ri-mail-send-fill"></i>Contact</a>
+  </nav>
+  <header>
+    <img src="https://i.imgur.com/NByaI5o.jpg" alt="Senya Profile Picture" loading="lazy">
+    <h1>Senya</h1>
+    <p>Muscular Artist</p>
+    <div class="socials">
+      <a href="https://x.com/senyaaccount" target="_blank" aria-label="Twitter" title="X / Twitter">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://www.deviantart.com/senyaaccount" target="_blank" aria-label="DeviantArt" title="DeviantArt">
+        <i class="fa-brands fa-deviantart"></i>
+      </a>
+      <a href="https://www.pixiv.net/en/users/102416849" target="_blank" aria-label="Pixiv" title="Pixiv">
+        <i class="fa-brands fa-pixiv"></i>
+      </a>
+      <a href="https://senyaccount.itch.io/" target="_blank" aria-label="itch.io" title="itch.io">
+        <i class="fa-brands fa-itch-io"></i>
+      </a>
+      <a href="https://bsky.app/profile/senyaaccount.bsky.social" target="_blank" aria-label="Bluesky" title="Bluesky" style="background:#112330; color:#139dfe;">
+        <!-- Bluesky SVG icon, updated to match official logo and aspect ratio -->
+        <svg class="bsky-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="1.3em" height="1.3em" aria-hidden="true" focusable="false">
+          <g>
+            <ellipse cx="36" cy="36" rx="36" ry="36" fill="#139DFC"/>
+            <path d="M19.4,46.7c2.4-3.3,7.2-2.3,8.6,1.4c0.9,2.3,3.4,7.7,7.9,7.7s7-5.3,7.9-7.7c1.4-3.7,6.2-4.7,8.6-1.4
+              c1.4,2,0.3,5.6-2.8,8.8c-3.1,3.2-8.2,6.5-13.7,6.5s-10.6-3.3-13.7-6.5C19.1,52.3,18,48.7,19.4,46.7z" fill="#fff"/>
+          </g>
+        </svg>
+      </a>
+    </div>
+  </header>
+  <main>
+    <!-- About section -->
+    <section id="about">
+      <div class="about-me-container">
+        <div class="about-me-text">
+          <h2><i class="ri-user-3-fill"></i> About</h2>
+          <p>I'm Senya, an artist specializing in muscular NSFW art. Over 7 years of commission experience.<br>
+          <strong>Open for commissions!</strong></p>
+        </div>
+        <div class="about-me-signature">
+          <img src="https://i.imgur.com/PbYzAAZ.jpg" alt="Senya signature art">
+        </div>
+      </div>
+    </section>
+    <!-- Works section -->
+    <section id="works">
+      <h2><i class="ri-gallery-fill"></i> Works</h2>
+      <div class="work-filters" aria-label="Works filters">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="comic">Comics</button>
+        <button data-filter="fullbody">Fullbody</button>
+        <button data-filter="halfbody">Halfbody</button>
+        <button data-filter="illustration">Illustrations</button>
+      </div>
+      <div class="works-gallery">
+        <!-- Comics -->
+        <figure data-category="comic">
+          <img src="https://i.imgur.com/Qdh9dE1.jpg" alt="Bloodrayne comic page — Commission for Gryphonheart" loading="lazy">
+          <figcaption>Bloodrayne comic page — Commission for Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="comic">
+          <img src="https://i.imgur.com/nDWfDaa.jpg" alt="Amazonian Effect III Page 27 Red — Commission for @bluecarnationstudios" loading="lazy">
+          <figcaption>Amazonian Effect III Page 27 Red — Commission for @bluecarnationstudios</figcaption>
+        </figure>
+        <figure data-category="comic">
+          <img src="https://i.imgur.com/R28rqRj.jpg" alt="Wallflower's Mistake 01 - Commission for @bluecarnationstudios" loading="lazy">
+          <figcaption>Wallflower's Mistake 01 - Commission for @bluecarnationstudios</figcaption>
+        </figure>
+        <figure data-category="comic">
+          <img src="https://i.imgur.com/RVtNvna.jpg" alt="Wallflower's Mistake 02 - Commission for @bluecarnationstudios" loading="lazy">
+          <figcaption>Wallflower's Mistake 02 - Commission for @bluecarnationstudios</figcaption>
+        </figure>
+        <figure data-category="comic">
+          <img src="https://i.imgur.com/5YFxVdq.jpg" alt="Wallflower's Mistake 03 - Commission for @bluecarnationstudios" loading="lazy">
+          <figcaption>Wallflower's Mistake 03 - Commission for @bluecarnationstudios</figcaption>
+        </figure>
+        <figure data-category="comic">
+          <img src="https://i.imgur.com/SkfrFIW.jpg" alt="Wallflower's Mistake 04 - Commission for @bluecarnationstudios" loading="lazy">
+          <figcaption>Wallflower's Mistake 04 - Commission for @bluecarnationstudios</figcaption>
+        </figure>
+        <!-- Night Elf Muscle Growth Series (Illustrations) -->
+        <figure data-category="illustration">
+          <img src="https://i.imgur.com/SGaCzTX.jpg" alt="Night Elf Muscle Growth - 01 — Commissioned by Gryphonheart" loading="lazy">
+          <figcaption>Night Elf Muscle Growth 01 — Commissioned by Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/ojrhzCJ.jpg" alt="Night Elf Muscle Growth - 02 — Commissioned by Gryphonheart" loading="lazy">
+          <figcaption>Night Elf Muscle Growth 02 — Commissioned by Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/OfeU25Q.jpg" alt="Night Elf Muscle Growth - 03 — Commissioned by Gryphonheart" loading="lazy">
+          <figcaption>Night Elf Muscle Growth 03 — Commissioned by Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/xEsNfZM.jpg" alt="Night Elf Muscle Growth - 04 — Commissioned by Gryphonheart" loading="lazy">
+          <figcaption>Night Elf Muscle Growth 04 — Commissioned by Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/5fZD7Oa.jpg" alt="Night Elf Muscle Growth - 05 — Commissioned by Gryphonheart" loading="lazy">
+          <figcaption>Night Elf Muscle Growth 05 — Commissioned by Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/bwxxCU5.jpg" alt="Night Elf Muscle Growth - 06 — Commissioned by Gryphonheart" loading="lazy">
+          <figcaption>Night Elf Muscle Growth 06 — Commissioned by Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/RvnzED9.jpg" alt="Night Elf Muscle Growth - 07 — Commissioned by Gryphonheart" loading="lazy">
+          <figcaption>Night Elf Muscle Growth 07 — Commissioned by Gryphonheart</figcaption>
+        </figure>
+        <!-- Titania Series (Illustrations) -->
+        <figure data-category="illustration">
+          <img src="https://imgur.com/IK2Zbkl.jpg" alt="Titania 01 - Commission for Gryphonheart" loading="lazy">
+          <figcaption>Titania 01 — Commission for Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/F7IUqIN.jpg" alt="Titania 02 - Commission for Gryphonheart" loading="lazy">
+          <figcaption>Titania 02 — Commission for Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/f3xGV9Y.jpg" alt="Titania 03 - Commission for Gryphonheart" loading="lazy">
+          <figcaption>Titania 03 — Commission for Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/6SJKmF3.jpg" alt="Titania 04 - Commission for Gryphonheart" loading="lazy">
+          <figcaption>Titania 04 — Commission for Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/Af4Ars3.jpg" alt="Titania 05 - Commission for Gryphonheart" loading="lazy">
+          <figcaption>Titania 05 — Commission for Gryphonheart</figcaption>
+        </figure>
+        <figure data-category="illustration">
+          <img src="https://imgur.com/QNp8dIn.jpg" alt="Titania 06 - Commission for Gryphonheart" loading="lazy">
+          <figcaption>Titania 06 — Commission for Gryphonheart</figcaption>
+        </figure>
+        <!-- Fullbody -->
+        <figure data-category="fullbody">
+          <img src="https://imgur.com/z185R5q.jpg" alt="Angela - Commission for Choi Dong Hyun" loading="lazy">
+          <figcaption>Angela — Commission for Choi Dong Hyun</figcaption>
+        </figure>
+        <figure data-category="fullbody">
+          <img src="https://imgur.com/bbLz0vS.jpg" alt="Magna - Commission for Growgetter" loading="lazy">
+          <figcaption>Magna — Commission for Growgetter</figcaption>
+        </figure>
+        <figure data-category="fullbody">
+          <img src="https://imgur.com/AZrUr6E.jpg" alt="Caleb e Zanya - Commission for JackStalka" loading="lazy">
+          <figcaption>Caleb e Zanya — Commission for JackStalka</figcaption>
+        </figure>
+        <figure data-category="fullbody">
+          <img src="https://imgur.com/Nvtodyg.jpg" alt="Caleb - Commission for JackStalka" loading="lazy">
+          <figcaption>Caleb — Commission for JackStalka</figcaption>
+        </figure>
+        <figure data-category="fullbody">
+          <img src="https://imgur.com/9SU8vFv.jpg" alt="Jarael Acken - Commission for @whoiszarcy" loading="lazy">
+          <figcaption>Jarael Acken — Commission for @whoiszarcy</figcaption>
+        </figure>
+        <figure data-category="fullbody">
+          <img src="https://imgur.com/kBP4p9Y.jpg" alt="Tsuyu Work - Commissioned for @pepsi_op_ninja" loading="lazy">
+          <figcaption>Tsuyu Work — Commissioned for @pepsi_op_ninja</figcaption>
+        </figure>
+        <figure data-category="fullbody">
+          <img src="https://imgur.com/Me4efF8.jpg" alt="Queen Anne - Commission for Sipmixtape" loading="lazy">
+          <figcaption>Queen Anne — Commission for Sipmixtape</figcaption>
+        </figure>
+        <figure data-category="fullbody">
+          <img src="https://imgur.com/UAODZLt.jpg" alt="Felina Muscle - Commission for @JettJettm" loading="lazy">
+          <figcaption>Felina Muscle — Commission for @JettJettm</figcaption>
+        </figure>
+        <!-- Halfbody -->
+        <figure data-category="halfbody">
+          <img src="https://imgur.com/hhg5TCZ.jpg" alt="Angela (Halfbody) - Commission for Choi Dong Hyun" loading="lazy">
+          <figcaption>Angela (Halfbody) — Commission for Choi Dong Hyun</figcaption>
+        </figure>
+        <figure data-category="halfbody">
+          <img src="https://imgur.com/bB1GctR.jpg" alt="Maya Fey" loading="lazy">
+          <figcaption>Maya Fey</figcaption>
+        </figure>
+        <figure data-category="halfbody">
+          <img src="https://imgur.com/LuUUwKi.jpg" alt="Bailey - Commission for @jonpa_draws" loading="lazy">
+          <figcaption>Bailey — Commission for @jonpa_draws</figcaption>
+        </figure>
+        <figure data-category="halfbody">
+          <img src="https://imgur.com/cE4mnm8.jpg" alt="Deutschland - Commission for Lazervyper" loading="lazy">
+          <figcaption>Deutschland — Commission for Lazervyper</figcaption>
+        </figure>
+        <figure data-category="halfbody">
+          <img src="https://imgur.com/vQae9CE.jpg" alt="Naoto - Commission for @TrickUltra" loading="lazy">
+          <figcaption>Naoto — Commission for @TrickUltra</figcaption>
+        </figure>
+      </div>
+    </section>
+    <!-- Prices section -->
+    <section id="prices">
+      <h2><i class="ri-money-dollar-circle-fill"></i> Prices</h2>
+      <table class="pricing-table" aria-label="Pricing Table">
+        <thead>
+          <tr><th>Service</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Full Body Colored (Per Character)</td><td>$65</td></tr>
+          <tr><td>+ Background</td><td>$35</td></tr>
+          <tr class="highlight">
+            <td><strong>Total for Full Body + Background</strong> <span class="badge">Most Popular</span></td>
+            <td><strong>$100</strong></td>
+          </tr>
+          <tr><td>Half Body Colored (Per Character)</td><td>$50</td></tr>
+          <tr><td>+ Background</td><td>$35</td></tr>
+          <tr><td><strong>Total for Half Body + Background</strong></td><td><strong>$85</strong></td></tr>
+          <tr><td>Colored Comic Page</td><td>$150</td></tr>
+          <tr><td>Comic Storyboard (Per Sketch Page)</td><td>$35</td></tr>
+          <tr><td>Full Body Sketch (Per Character)</td><td>$25</td></tr>
+          <tr><td>Half Body Sketch (Per Character)</td><td>$20</td></tr>
+          <tr><td>Payment Options:</td><td>PayPal (Send to <strong>shirubia41@gmail.com</strong>)</td></tr>
+        </tbody>
+      </table>
+      <h3>What You Will Receive:</h3>
+      <ul>
+        <li>High-quality Clip Studio files</li>
+        <li>JPG image</li>
+      </ul>
+      <h3>Payment Terms:</h3>
+      <p><strong>50% upfront payment</strong> and <strong>50% upon completion of the work</strong>.</p>
+    </section>
+    <!-- Contact section -->
+    <section id="contact">
+      <h2><i class="ri-mail-send-fill"></i> Contact</h2>
+      <form action="https://formspree.io/f/mvgaapel" method="POST" aria-label="Contact form">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required placeholder="e.g. your@email.com">
+        <label for="message">Commission Request:</label>
+        <textarea id="message" name="message" rows="4" required placeholder="Describe your commission request..."></textarea>
+        <input type="submit" value="Send Request">
+      </form>
+    </section>
+  </main>
+  <div id="lightbox" class="lightbox" aria-modal="true" role="dialog">
+    <button class="close-btn" id="closeLightbox" aria-label="Close">X</button>
+    <img src="" alt="Expanded Work Image" id="lightboxImage">
+    <p id="lightboxCaption" style="color: #ffccff; margin-top: 1.5rem; font-size: 1.2rem; font-style: italic; text-align: center;"></p>
+  </div>
+  <footer>
+    <p>&copy; 2025 Senya. All rights reserved.</p>
+  </footer>
+  <script>
+    // Work Filters (Gallery)
+    document.querySelectorAll('.work-filters button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.work-filters button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.works-gallery figure').forEach(fig => {
+          if (filter === 'all' || fig.dataset.category === filter) {
+            fig.style.display = '';
+          } else {
+            fig.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox for Gallery Images with Keyboard Navigation
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const galleryImgs = Array.from(document.querySelectorAll('.works-gallery img'));
+    let currentImgIndex = -1;
+
+    function openLightbox(index) {
+      const img = galleryImgs[index];
+      lightboxImg.src = img.src;
+      lightboxCaption.textContent = img.alt;
+      lightbox.classList.add('open');
+      currentImgIndex = index;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+      currentImgIndex = -1;
+      document.body.style.overflow = '';
+    }
+    function showPrevImage() {
+      if (currentImgIndex > 0) {
+        openLightbox(currentImgIndex - 1);
+      }
+    }
+    function showNextImage() {
+      if (currentImgIndex < galleryImgs.length - 1) {
+        openLightbox(currentImgIndex + 1);
+      }
+    }
+    galleryImgs.forEach((img, idx) => {
+      img.addEventListener('click', function() {
+        openLightbox(idx);
+      });
+    });
+    document.getElementById('closeLightbox').onclick = closeLightbox;
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showPrevImage();
+      if (e.key === "ArrowRight") showNextImage();
+    });
+
+    // Navbar active state on scroll/click
+    const navLinks = document.querySelectorAll('.navbar a');
+    const sections = Array.from(document.querySelectorAll('main section'));
+    window.addEventListener('scroll', () => {
+      let fromTop = window.scrollY + 120;
+      let current = sections.find(section => section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop);
+      navLinks.forEach(link => link.classList.remove('active'));
+      if (current) {
+        let id = current.id;
+        let active = document.getElementById('nav-' + id);
+        if (active) active.classList.add('active');
+      }
+    });
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Music Play Button
+    const musicBtn = document.getElementById('musicStartBtn');
+    const scPlayer = document.getElementById('scplayer');
+    musicBtn.addEventListener('click', () => {
+      scPlayer.style.display = 'block';
+      scPlayer.contentWindow.postMessage('{"method":"play"}', '*');
+      musicBtn.style.display = 'none';
+    });
+    window.addEventListener('keydown', hideMusicBtnOnInteraction, { once: true });
+    window.addEventListener('mousedown', hideMusicBtnOnInteraction, { once: true });
+    function hideMusicBtnOnInteraction() {
+      if (musicBtn.style.display !== 'none') musicBtn.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
