@@ -14,7 +14,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-3KCCX591J9');
   </script>
   <style>
@@ -64,13 +63,13 @@
       z-index: -5; opacity: 0.5;
     }
     .navbar {
-      position: absolute;
+      position: fixed;
       top: 0;
       width: 100vw;
       background: rgba(24, 0, 36, 0.81);
       display: flex;
       justify-content: center;
-      z-index: 100;
+      z-index: 1000;
       padding: 0.7rem 0 0.45rem 0;
       border-bottom: var(--border);
       box-shadow: 0 2px 16px #0001;
@@ -144,7 +143,7 @@
     }
     header {
       text-align: center;
-      padding: 3.2rem 1rem 1.8rem 1rem;
+      padding: calc(3.2rem + var(--navbar-height)) 1rem 1.8rem 1rem;
       background: linear-gradient(120deg, #3f1fffcc 0%, #fa08b799 90%);
       color: white;
       box-shadow: 0 0 40px var(--primary);
@@ -163,6 +162,8 @@
       margin-bottom: 1.1rem;
       box-shadow: 0 0 0 10px #fa08b733;
       background: #19102b;
+      z-index: 1;
+      position: relative;
     }
     header h1 {
       font-family: 'Orbitron', 'Montserrat', sans-serif;
@@ -183,11 +184,14 @@
     .socials {
       text-align: center;
       margin-top: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
     }
     .socials a {
       color: var(--accent);
       font-size: 2.15rem;
-      margin: 0 0.6rem;
       transition: color 0.22s, filter 0.21s, background 0.19s;
       text-decoration: none;
       filter: var(--icon-glow);
@@ -204,13 +208,7 @@
       min-width: 44px;
       min-height: 44px;
       touch-action: manipulation;
-    }
-    .socials a:hover {
-      color: #fff;
-      filter: drop-shadow(0 0 18px var(--accent)) drop-shadow(0 0 9px #fff);
-      background: var(--accent);
-      box-shadow: 0 0 0 3px var(--primary)88;
-      border-color: var(--primary);
+      vertical-align: middle;
     }
     .socials a[aria-label="Twitter"]    { color: #1da1f2; background: #191b2b; }
     .socials a[aria-label="DeviantArt"]{ color: #05cc47; background: #18291e; }
@@ -223,7 +221,26 @@
     .socials .fa-pixiv { font-size: 1.22em; }
     .socials .fa-itch-io { font-size: 1.22em; }
     .socials .fa-globe { font-size: 1.22em; }
-    .socials .bsky-icon { font-size: 1.22em; width: 1.22em; height: 1.22em; display: block; }
+    .socials .bsky-icon {
+      font-size: 1.22em;
+      width: 1.22em;
+      height: 1.22em;
+      display: block;
+      margin: 0 auto;
+    }
+    .socials a[aria-label="Bluesky"] {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .socials a:hover {
+      color: #fff;
+      filter: drop-shadow(0 0 18px var(--accent)) drop-shadow(0 0 9px #fff);
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--primary)88;
+      border-color: var(--primary);
+    }
     main { position: relative; z-index: 1; }
     section {
       padding: 2.7rem 1.6rem 2.2rem 1.6rem;
@@ -420,6 +437,9 @@
         right: 15px;
         padding: 13px 18px;
       }
+      header {
+        padding-top: calc(2.1rem + var(--navbar-height));
+      }
     }
     .close-btn {
       position: absolute;
@@ -550,6 +570,9 @@
       section h2 { font-size: 1.6rem; }
       header h1 { font-size: 2.1rem; }
       .socials a { font-size: 1.7rem; width: 2.1em; height: 2.1em; }
+      header {
+        padding-top: calc(2.5rem + var(--navbar-height));
+      }
     }
     @media (max-width: 600px) {
       .works-gallery {
@@ -572,6 +595,9 @@
       }
       input, textarea {
         font-size: 1rem;
+      }
+      header {
+        padding-top: calc(1.2rem + var(--navbar-height));
       }
     }
   </style>
@@ -603,7 +629,7 @@
       <a href="https://senyaccount.itch.io/" target="_blank" aria-label="itch.io" title="itch.io">
         <i class="fa-brands fa-itch-io"></i>
       </a>
-      <a href="https://bsky.app/profile/senyaaccount.bsky.social" target="_blank" aria-label="Bluesky" title="Bluesky" style="background:#112330; color:#139dfe;">
+      <a href="https://bsky.app/profile/senyaaccount.bsky.social" target="_blank" aria-label="Bluesky" title="Bluesky">
         <svg class="bsky-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="1.3em" height="1.3em" aria-hidden="true" focusable="false">
           <g>
             <ellipse cx="36" cy="36" rx="36" ry="36" fill="#139DFC"/>
