@@ -17,7 +17,7 @@
     gtag('config', 'G-3KCCX591J9');
   </script>
   <style>
-    /* ... (seu CSS permanece igual, não alterei nada aqui) ... */
+    /* ... CSS unchanged ... */
     :root {
       --primary: #fa08b7;
       --secondary: #4f3fff;
@@ -695,8 +695,7 @@
           <figcaption>Yoruichi 01 - Commission for Gryphonheart</figcaption>
         </figure>
         <figure data-category="comic">
-          <!-- Corrigido para .jpg -->
-          <img src="https://imgur.com/CMrkAey.jpg" alt="Yoruichi 02 - Commission for Gryphonheart" loading="lazy">
+          <img src="https://iili.io/FEPsBTu.jpg" alt="Yoruichi 02 - Commission for Gryphonheart" loading="lazy">
           <figcaption>Yoruichi 02 - Commission for Gryphonheart</figcaption>
         </figure>
         <!-- End new comics -->
@@ -759,8 +758,7 @@
         </figure>
         <!-- End new illustration -->
         <figure data-category="fullbody">
-          <!-- Corrigido para .jpg -->
-          <img src="https://imgur.com/qzTpFZs.jpg" alt="Angela — Commission for Choi Dong Hyun" loading="lazy">
+          <img src="https://iili.io/FEPyvPn.jpg" alt="Angela — Commission for Choi Dong Hyun" loading="lazy">
           <figcaption>Angela — Commission for Choi Dong Hyun</figcaption>
         </figure>
         <figure data-category="fullbody">
@@ -873,7 +871,7 @@
     <p>&copy; 2025 Senya. All rights reserved.</p>
   </footer>
   <script>
-    // Navbar active state on scroll/click
+    // ... JavaScript unchanged ...
     const navLinks = document.querySelectorAll('.navbar-links a');
     const sections = Array.from(document.querySelectorAll('main section'));
     window.addEventListener('scroll', () => {
@@ -892,7 +890,6 @@
         this.classList.add('active');
       });
     });
-    // Work Filters (Gallery)
     document.querySelectorAll('.work-filters button').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.work-filters button').forEach(b => b.classList.remove('active'));
@@ -907,7 +904,6 @@
         });
       });
     });
-    // Lightbox for Gallery Images with Keyboard Navigation
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImage');
     const lightboxCaption = document.getElementById('lightboxCaption');
@@ -954,7 +950,6 @@
       if (e.key === "ArrowLeft") showPrevImage();
       if (e.key === "ArrowRight") showNextImage();
     });
-    // --- Touch swipe for lightbox navigation ---
     let touchStartX = null;
     let touchEndX = null;
     let swipeHintDismissed = false;
